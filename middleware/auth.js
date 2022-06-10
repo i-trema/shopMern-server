@@ -6,7 +6,7 @@ const auth = (req, res, next) => {
     const token = req.headers.authorization.split(" ")[1];
     // vérifier la validité du token ( avec la clé utilisée lors de de la
     // création du token ) :
-    jwt.verify(token, "secret", (err, payload) => {
+    jwt.verify(token, process.env.PRIVATE_KEY, (err, payload) => {
       if (err) {
         return res.status(401).json("Unauthorized");
       }

@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const mongoose = require("mongoose");
 
@@ -9,10 +11,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const uri = "mongodb://localhost:27017/dbMern";
+// const uri = "mongodb://localhost:27017/dbMern";
 
 mongoose
-  .connect(uri)
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("Connexion à la BDD établie"))
   .catch((error) => console.log(error));
 
